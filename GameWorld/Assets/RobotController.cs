@@ -15,7 +15,18 @@ public class RobotController : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {
+
+    void Update()
+    {
+        Vector2 moveDirection = GetComponent<Rigidbody2D>().velocity;
+        if (moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(0, moveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    }
+
+    void FixedUpdate () {
 
         if (Input.GetKey(KeyCode.D))
         {
