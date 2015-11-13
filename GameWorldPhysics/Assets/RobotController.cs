@@ -1,19 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class RobotController : MonoBehaviour {
 
     public float moveSpeed;
-
     public float jumpHeight;
     public bool jumping = false;
+    //public int ScoreUp;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-
-
+    //public Text scoreCounter;
+    
     // Update is called once per frame
     void FixedUpdate () {
 
@@ -35,11 +32,20 @@ public class RobotController : MonoBehaviour {
             }
         }
     }
+    
     void OnCollisionEnter2D(Collision2D coll)
     {
         if(coll.gameObject.tag == "Ground" )
         {
             jumping = false;
         }
+        else if(coll.gameObject.tag == "Score")
+        {
+            ScoreUpdated.score += 10;
+            jumping = false;
+
+        }
     }
+
+    
 }
